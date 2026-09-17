@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Arch | Interior Design Studio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F6F2EE',
+                        terracotta: '#b6653e',
+                        'terracotta-hover': '#98512e',
+                        'terracotta-soft': '#c47853',
+                        sage: '#4d513b',
+                        'sage-light': '#61664c',
+                        'charcoal-dark': '#221E1D',
+                        'muted-brown': '#726863',
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Base Utility & Color Fallbacks */
+        .bg-cream { background-color: #F6F2EE; }
+        .bg-terracotta { background-color: #b6653e; }
+        .bg-terracotta-hover:hover { background-color: #98512e; }
+        .bg-terracotta-soft { background-color: #c47853; }
+        .bg-sage { background-color: #4d513b; }
+        .bg-sage-light { background-color: #61664c; }
+
+        .text-terracotta { color: #b6653e; }
+        .text-terracotta-soft { color: #c47853; }
+        .text-sage { color: #4d513b; }
+        .text-charcoal-dark { color: #221E1D; }
+        .text-muted-brown { color: #726863; }
+
+        .arch-top {
+            border-radius: 240px 240px 0 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F6F2EE;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b6653e;
+            border-radius: 4px;
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 3D Door Mechanics for Service Cards */
+        .perspective-1000 {
+            perspective: 1200px;
+        }
+
+        /* Rectangular Door Shape Classes */
+        .door-card-shape {
+            border-radius: 16px;
+        }
+        .door-left-shape {
+            border-radius: 14px 0 0 14px;
+        }
+        .door-right-shape {
+            border-radius: 0 14px 14px 0;
+        }
+        
+        /* Animation Speed for Doors */
+        .door-left {
+            transform-origin: left center;
+            transition: transform 3.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 2.5s ease-in-out;
+            backface-visibility: hidden;
+        }
+        .door-right {
+            transform-origin: right center;
+            transition: transform 3.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 2.5s ease-in-out;
+            backface-visibility: hidden;
+        }
+
+        /* Open Doors State */
+        .doors-open .door-left {
+            transform: rotateY(-118deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .doors-open .door-right {
+            transform: rotateY(118deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Smooth Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* PERFECT SEAMLESS INFINITE MARQUEE WITH ZERO LAG */
+        :root {
+            --lamp-spacing: 5rem;
+        }
+        @media (min-width: 640px) {
+            :root {
+                --lamp-spacing: 8rem;
+            }
+        }
+
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .lamp-track {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 18s linear infinite;
+            will-change: transform;
+        }
+
+        .lamp-group {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            gap: var(--lamp-spacing);
+            padding-right: var(--lamp-spacing);
+        }
+
+        /* Organic Shapes */
+        .organic-shape-1 { border-radius: 68% 32% 54% 46% / 52% 58% 42% 48%; }
+        .organic-shape-2 { border-radius: 42% 58% 38% 62% / 62% 38% 62% 38%; }
+        .organic-shape-3 { border-radius: 56% 44% 65% 35% / 44% 60% 40% 56%; }
+        .organic-shape-4 { border-radius: 38% 62% 46% 54% / 58% 42% 58% 42%; }
+    </style>
+</head>
+<body class="bg-cream text-charcoal-dark font-sans antialiased selection:bg-terracotta selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex flex-col group">
+                <div class="flex items-center space-x-2.5">
+                    <svg class="w-6 h-6 text-terracotta group-hover:rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M4 21V10a8 8 0 1 1 16 0v11" />
+                        <path d="M9 21v-6a3 3 0 0 1 6 0v6" />
+                    </svg>
+                    <span class="font-serif text-2xl font-semibold tracking-wider text-charcoal-dark">WHITE ARCH</span>
+                </div>
+                <span class="text-[8px] tracking-[0.25em] text-muted-brown uppercase pl-8 -mt-1 font-medium">SPACES FOR A BETTER YOU</span>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-medium tracking-wide text-charcoal-dark/80">
+                <a href="#home" class="hover:text-terracotta transition-colors">Home</a>
+                <a href="#about" class="hover:text-terracotta transition-colors">About</a>
+                <a href="#services" class="hover:text-terracotta transition-colors">Services</a>
+                <a href="#projects" class="hover:text-terracotta transition-colors">Projects</a>
+                <a href="#process" class="hover:text-terracotta transition-colors">Process</a>
+                <a href="#testimonials" class="hover:text-terracotta transition-colors">Testimonials</a>
+            </nav>
+
+            <!-- CTA -->
+            <div class="hidden md:block">
+                <a href="#contact" class="inline-block bg-terracotta hover:bg-terracotta-hover text-white text-xs font-medium px-6 py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                    Get in Touch
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button id="mobile-menu-btn" class="md:hidden text-charcoal-dark p-2" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-stone-200 px-6 py-6 space-y-4">
+            <a href="#home" class="block text-sm font-medium text-charcoal-dark">Home</a>
+            <a href="#about" class="block text-sm font-medium text-charcoal-dark">About</a>
+            <a href="#services" class="block text-sm font-medium text-charcoal-dark">Services</a>
+            <a href="#projects" class="block text-sm font-medium text-charcoal-dark">Projects</a>
+            <a href="#process" class="block text-sm font-medium text-charcoal-dark">Process</a>
+            <a href="#testimonials" class="block text-sm font-medium text-charcoal-dark">Testimonials</a>
+            <a href="#contact" class="inline-block bg-terracotta text-white text-xs font-medium px-6 py-2.5 rounded-full">Get in Touch</a>
+        </div>
+    </header>
+
+    <!-- FULLSCREEN HERO SECTION -->
+    <section id="home" class="min-h-[calc(100vh-80px)] bg-cream flex flex-col justify-center py-12 max-w-7xl mx-auto px-6 lg:px-12 overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full">
+            
+            <!-- Left Text Box -->
+            <div class="lg:col-span-5 flex flex-col justify-center space-y-7 z-10 my-auto reveal">
+                <span class="text-[11px] uppercase tracking-[0.25em] text-terracotta font-semibold">
+                    WHITE ARCH STUDIO
+                </span>
+                
+                <h1 class="font-serif text-5xl sm:text-6xl lg:text-[68px] leading-[1.08] text-charcoal-dark font-normal">
+                    Inspire everyday <span class="italic text-terracotta font-serif">living.</span>
+                </h1>
+
+                <p class="text-muted-brown text-sm sm:text-base leading-relaxed max-w-md">
+                    At White Arch, we design thoughtful, functional and timeless spaces that reflect your story.
+                </p>
+
+                <div>
+                    <a href="#projects" class="inline-flex items-center space-x-3 bg-terracotta hover:bg-terracotta-hover text-white px-7 py-3 rounded-full text-xs font-medium transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 group">
+                        <span>Explore Projects</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] transition-transform duration-300 group-hover:translate-x-1.5"></i>
+                    </a>
+                </div>
+
+                <!-- Footer Tag Category -->
+                <div class="pt-8 border-t border-stone-300/60 flex items-center space-x-4 text-[10px] font-semibold text-muted-brown/80 tracking-[0.2em] uppercase">
+                    <span>HOMES</span>
+                    <span class="text-stone-300">|</span>
+                    <span>OFFICES</span>
+                    <span class="text-stone-300">|</span>
+                    <span>COMMERCIAL SPACES</span>
+                </div>
+            </div>
+
+            <!-- Right Visual Composition -->
+            <div class="lg:col-span-7 relative flex items-stretch justify-end gap-3 sm:gap-4 h-[520px] lg:h-[580px] my-auto reveal">
+                
+                <!-- Main Center Big Arch Image Container -->
+                <div class="relative w-7/12 arch-top overflow-hidden bg-stone-200 shadow-xl flex-1 group">
+                    <img src="11.jpg" 
+                         alt="Warm Scandinavian Living Room" 
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+
+                <!-- Right Side Compound Column -->
+                <div class="w-4/12 flex flex-col justify-between relative pl-1 sm:pl-2">
+                    <!-- Top Green Arch Block -->
+                    <div class="w-full h-36 bg-sage arch-top"></div>
+                    
+                    <!-- Arch Window Entryway Image -->
+                    <div class="w-full h-[320px] arch-top overflow-hidden relative shadow-md bg-stone-200 border-2 border-cream -mt-8 group">
+                        <img src="9.jpg" 
+                             alt="Arched Hallway Console" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION (GREEN: #4d513b) -->
+    <section id="about" class="py-24 bg-sage text-white my-12 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <div class="lg:col-span-5 relative reveal">
+                    <div class="relative w-full max-w-[360px] sm:max-w-[400px] aspect-square mx-auto">
+                        <!-- Back Image -->
+                        <div class="absolute top-0 left-0 w-2/3 h-2/3 rounded-[10px] overflow-hidden shadow-xl border-2 border-white/20 group">
+                            <img src="16.jpg" 
+                                 alt="Dining Area Interior" 
+                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+                        <!-- Front Image -->
+                        <div class="absolute bottom-0 right-0 w-2/3 h-2/3 rounded-[10px] overflow-hidden shadow-2xl border-4 border-sage group z-10">
+                            <img src="14.jpg" 
+                                 alt="Arched Interior Detail" 
+                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-8 reveal">
+                    <span class="text-xs uppercase tracking-[0.25em] text-terracotta-soft font-semibold block">
+                        ABOUT WHITE ARCH
+                    </span>
+
+                    <h2 class="font-serif text-4xl sm:text-5xl text-white leading-tight">
+                        Soulful spaces that 
+                        cultivate <span class="italic text-terracotta-soft">calm.</span>
+                    </h2>
+
+                    <p class="text-stone-300 leading-relaxed text-base max-w-2xl">
+                    White Arch was founded on a single belief: that exceptional interiors are born from deep listening. We begin every project by understanding how you move through space.
+                    <br>
+                    The arch is our signature, not as decoration, but as philosophy. It frames, elevates, and invites. It transforms a doorway into a moment.
+                    </p>
+
+                    <div>
+                        <a href="#services" class="inline-flex items-center space-x-3 bg-terracotta hover:bg-terracotta-hover text-white px-7 py-3 rounded-full text-xs font-medium transition-all duration-300 shadow-md hover:-translate-y-0.5">
+                            <span>Our Services</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/20">
+                         <div>
+                            <div class="font-serif text-4xl font-light text-terracotta-soft">5+</div>
+                            <div class="text-[10px] text-stone-300 tracking-wider uppercase mt-1">Years Experience</div>
+                        </div>
+                        <div>
+                            <div class="font-serif text-4xl font-light text-terracotta-soft">15+</div>
+                            <div class="text-[10px] text-stone-300 tracking-wider uppercase mt-1">Projects Completed</div>
+                        </div>
+                        <div>
+                            <div class="font-serif text-4xl font-light text-terracotta-soft">10+</div>
+                            <div class="text-[10px] text-stone-300 tracking-wider uppercase mt-1">Happy Clients</div>
+                        </div>
+                       
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PERFECT CONTINUOUS BLACK LAMP STRIP (ZERO LAG, PERFECT EQUAL SPACING) -->
+    <section class="py-8 bg-transparent overflow-hidden select-none my-8 w-full">
+        <div class="lamp-track">
+            
+            <!-- Loop Group 1 -->
+            <div class="lamp-group">
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+            </div>
+
+            <!-- Loop Group 2 (Exact Duplicate for Continuous Loop) -->
+            <div class="lamp-group" aria-hidden="true">
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+                <svg class="w-10 h-10 sm:w-12 sm:h-12 text-black shrink-0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="10,7 22,7 25,17 7,17" />
+                    <circle cx="16" cy="21" r="2" />
+                    <line x1="16" y1="23" x2="16" y2="26" />
+                    <line x1="11" y1="26" x2="21" y2="26" />
+                </svg>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OUR SERVICES SECTION -->
+    <section id="services" class="py-20 bg-cream max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="mb-16 text-center max-w-2xl mx-auto reveal">
+            <span class="text-xs uppercase tracking-[0.25em] text-terracotta font-semibold block mb-2">OUR SERVICES</span>
+            <h2 class="font-serif text-4xl sm:text-5xl text-charcoal-dark">
+                Design. Plan. <span class="italic text-terracotta">Transform.</span>
+            </h2>
+            </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+            
+            <!-- CARD 1 -->
+            <div class="service-card door-card-shape relative bg-white border-[3px] border-terracotta aspect-[3/4.2] shadow-xl flex flex-col justify-center overflow-hidden perspective-1000 group reveal" data-index="0">
+                <div class="py-8 px-6 flex flex-col justify-center items-center text-center h-full z-0 bg-gradient-to-b from-stone-50 to-white">
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-terracotta/10 text-terracotta flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-house text-lg"></i>
+                        </div>
+                        <span class="text-[9px] uppercase tracking-[0.25em] font-bold text-terracotta mb-2">01 • LIVING</span>
+                        <h3 class="font-serif text-2xl text-charcoal-dark mb-3">Residential Interiors</h3>
+                        <p class="text-muted-brown text-xs leading-relaxed max-w-[210px]">
+                            Thoughtful, bespoke homes curated specifically for modern living, warmth, and everyday comfort.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="doors-wrapper absolute inset-0 z-10 flex pointer-events-none">
+                    <div class="door-left door-left-shape w-1/2 h-full bg-white border-r border-stone-200/90 flex items-center justify-end p-3 relative shadow-md">
+                        <div class="absolute inset-2 border border-stone-200/60 door-left-shape pointer-events-none"></div>
+                        <div class="w-1.5 h-12 bg-terracotta rounded-full mr-0.5 shadow-sm"></div>
+                    </div>
+                    <div class="door-right door-right-shape w-1/2 h-full bg-white border-l border-stone-200/90 flex items-center justify-start p-3 relative shadow-md">
+                        <div class="absolute inset-2 border border-stone-200/60 door-right-shape pointer-events-none"></div>
+                        <div class="w-1.5 h-12 bg-terracotta rounded-full ml-0.5 shadow-sm"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="service-card door-card-shape relative bg-white border-[3px] border-sage aspect-[3/4.2] shadow-xl flex flex-col justify-center overflow-hidden perspective-1000 group reveal" data-index="1">
+                <div class="py-8 px-6 flex flex-col justify-center items-center text-center h-full z-0 bg-gradient-to-b from-stone-50 to-white">
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-sage/10 text-sage flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-building text-lg"></i>
+                        </div>
+                        <span class="text-[9px] uppercase tracking-[0.25em] font-bold text-sage mb-2">02 • WORK</span>
+                        <h3 class="font-serif text-2xl text-charcoal-dark mb-3">Commercial Spaces</h3>
+                        <p class="text-muted-brown text-xs leading-relaxed max-w-[210px]">
+                            Functional, inspiring environments engineered for productivity and unique brand essence.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="doors-wrapper absolute inset-0 z-10 flex pointer-events-none">
+                    <div class="door-left door-left-shape w-1/2 h-full bg-white border-r border-stone-200/90 flex items-center justify-end p-3 relative shadow-md">
+                        <div class="absolute inset-2 border border-stone-200/60 door-left-shape pointer-events-none"></div>
+                        <div class="w-1.5 h-12 bg-sage rounded-full mr-0.5 shadow-sm"></div>
+                    </div>
+                    <div class="door-right door-right-shape w-1/2 h-full bg-white border-l border-stone-200/90 flex items-center justify-start p-3 relative shadow-md">
+                        <div class="absolute inset-2 border border-stone-200/60 door-right-shape pointer-events-none"></div>
+                        <div class="w-1.5 h-12 bg-sage rounded-full ml-0.5 shadow-sm"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="service-card door-card-shape relative bg-white border-[3px] border-terracotta aspect-[3/4.2] shadow-xl flex flex-col justify-center overflow-hidden perspective-1000 group reveal" data-index="2">
+                <div class="py-8 px-6 flex flex-col justify-center items-center text-center h-full z-0 bg-gradient-to-b from-stone-50 to-white">
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-terracotta/10 text-terracotta flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-ruler-combined text-lg"></i>
+                        </div>
+                        <span class="text-[9px] uppercase tracking-[0.25em] font-bold text-terracotta mb-2">03 • PLAN</span>
+                        <h3 class="font-serif text-2xl text-charcoal-dark mb-3">Space Planning</h3>
+                        <p class="text-muted-brown text-xs leading-relaxed max-w-[210px]">
+                            Optimized layouts creating effortless circulation, architectural flow, and brighter living.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="doors-wrapper absolute inset-0 z-10 flex pointer-events-none">
+                    <div class="door-left door-left-shape w-1/2 h-full bg-white border-r border-stone-200/90 flex items-center justify-end p-3 relative shadow-md">
+                        <div class="absolute inset-2 border border-stone-200/60 door-left-shape pointer-events-none"></div>
+                        <div class="w-1.5 h-12 bg-terracotta rounded-full mr-0.5 shadow-sm"></div>
+                    </div>
+                    <div class="door-right door-right-shape w-1/2 h-full bg-white border-l border-stone-200/90 flex items-center justify-start p-3 relative shadow-md">
+                        <div class="absolute inset-2 border border-stone-200/60 door-right-shape pointer-events-none"></div>
+                        <div class="w-1.5 h-12 bg-terracotta rounded-full ml-0.5 shadow-sm"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="service-card door-card-shape relative bg-white border-[3px] border-sage aspect-[3/4.2] shadow-xl flex flex-col justify-center overflow-hidden perspective-1000 group reveal" data-index="3">
+                <div class="py-8 px-6 flex flex-col justify-center items-center text-center h-full z-0 bg-gradient-to-b from-stone-50 to-white">
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-sage/10 text-sage flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-couch text-lg"></i>
+                        </div>
+                        <span class="text-[9px] uppercase tracking-[0.25em] font-bold text-sage mb-2">04 • CURATE</span>
+                        <h3 class="font-serif text-2xl text-charcoal-dark mb-3">Styling & Décor</h3>
+                        <p class="text-muted-brown text-xs leading-relaxed max-w-[210px]">
+                            Curated art pieces, custom textiles, and artisan details that make all the difference.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="doors-wrapper absolute inset-0 z-10 flex pointer-events-none">
+                    <div class="door-left door-left-shape w-1/2 h-full bg-white border-r border-stone-200/90 flex items-center justify-end p-3 relative shadow-md">
+                        <div class="absolute inset-2 border border-stone-200/60 door-left-shape pointer-events-none"></div>
+                        <div class="w-1.5 h-12 bg-sage rounded-full mr-0.5 shadow-sm"></div>
+                    </div>
+                    <div class="door-right door-right-shape w-1/2 h-full bg-white border-l border-stone-200/90 flex items-center justify-start p-3 relative shadow-md">
+                        <div class="absolute inset-2 border border-stone-200/60 door-right-shape pointer-events-none"></div>
+                        <div class="w-1.5 h-12 bg-sage rounded-full ml-0.5 shadow-sm"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURED PROJECTS SECTION -->
+    <section id="projects" class="py-20 bg-cream max-w-7xl mx-auto px-6 lg:px-12 overflow-hidden">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+            <div>
+                <span class="text-xs uppercase tracking-[0.25em] text-terracotta font-semibold block mb-2">
+                    FEATURED PROJECTS
+                </span>
+                <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-charcoal-dark">
+                    Organic forms that <span class="italic text-terracotta font-serif">fit together.</span>
+                </h2>
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <!-- Card 01 -->
+<a href="sonavanes.html" class="block md:col-span-7 group cursor-pointer reveal relative z-20">
+    <div class="organic-shape-1 overflow-hidden relative min-h-[420px] sm:min-h-[480px] shadow-2xl flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.02]">
+
+        <img src="sonavane-feature.png" alt="Sonavane Home" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+
+        <!-- pointer-events-none prevents overlays from swallowing clicks -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30 group-hover:bg-black/60 transition-colors duration-300 pointer-events-none"></div>
+
+        <div class="relative z-10 flex flex-col items-center justify-center text-center p-8 sm:p-14 space-y-3 max-w-[85%] mx-auto pointer-events-none">
+            <span class="text-[10px] tracking-[0.25em] font-semibold text-cream uppercase bg-white/20 backdrop-blur-md px-4 py-1 rounded-full border border-white/20">RESIDENTIAL • 01</span>
+            <h3 class="font-serif text-3xl sm:text-4xl text-white font-normal">Sonavane Home</h3>
+            <p class="text-xs text-cream/90 font-light leading-relaxed max-w-xs">Soft neutral palettes, reeded millwork, and warm curved geometries.</p>
+        </div>
+
+    </div>
+</a>
+
+            <!-- Card 02 -->
+            <div class="md:col-span-5 group cursor-pointer reveal" style="transition-delay: 150ms;">
+                <div class="organic-shape-2 overflow-hidden relative min-h-[380px] sm:min-h-[440px] shadow-2xl flex items-center justify-center transition-transform duration-500 hover:scale-[1.02]">
+                    <img src="vispute-featured.png" alt="Vispute Home" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30 group-hover:bg-black/60 transition-colors duration-300"></div>
+                    <div class="relative z-10 flex flex-col items-center justify-center text-center p-8 sm:p-12 space-y-3 max-w-[85%] mx-auto">
+                        <span class="text-[10px] tracking-[0.25em] font-semibold text-cream uppercase bg-white/20 backdrop-blur-md px-4 py-1 rounded-full border border-white/20">RESIDENTIAL • 02</span>
+                        <h3 class="font-serif text-3xl sm:text-4xl text-white font-normal">Vispute Home</h3>
+                        <p class="text-xs text-cream/90 font-light leading-relaxed max-w-xs">A warm, modern home where natural wood, soft lighting, and thoughtful details create effortless comfort.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 03 -->
+            <div class="md:col-span-5 group cursor-pointer reveal">
+                <div class="organic-shape-3 overflow-hidden relative min-h-[380px] sm:min-h-[440px] shadow-2xl flex items-center justify-center transition-transform duration-500 hover:scale-[1.02]">
+                    <img src="lic-featured.png" alt="LIC Office" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30 group-hover:bg-black/60 transition-colors duration-300"></div>
+                    <div class="relative z-10 flex flex-col items-center justify-center text-center p-8 sm:p-12 space-y-3 max-w-[85%] mx-auto">
+                        <span class="text-[10px] tracking-[0.25em] font-semibold text-cream uppercase bg-white/20 backdrop-blur-md px-4 py-1 rounded-full border border-white/20">COMMERCIAL • 03</span>
+                        <h3 class="font-serif text-3xl sm:text-4xl text-white font-normal">LIC Office & Studio</h3>
+                        <p class="text-xs text-cream/90 font-light leading-relaxed max-w-xs">A professional workspace infused with creativity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 04 -->
+            <div class="md:col-span-7 group cursor-pointer reveal" style="transition-delay: 150ms;">
+                <div class="organic-shape-4 overflow-hidden relative min-h-[420px] sm:min-h-[480px] shadow-2xl flex items-center justify-center transition-transform duration-500 hover:scale-[1.02]">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1000" alt="Ulhasnagar Home" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30 group-hover:bg-black/60 transition-colors duration-300"></div>
+                    <div class="relative z-10 flex flex-col items-center justify-center text-center p-8 sm:p-14 space-y-3 max-w-[85%] mx-auto">
+                        <span class="text-[10px] tracking-[0.25em] font-semibold text-cream uppercase bg-white/20 backdrop-blur-md px-4 py-1 rounded-full border border-white/20">LUXURY RESIDENTIAL • 04</span>
+                        <h3 class="font-serif text-3xl sm:text-4xl text-white font-normal">Ulhasnagar Home</h3>
+                        <p class="text-xs text-cream/90 font-light leading-relaxed max-w-xs">Curated residence blending organic wall silhouettes and warm atmosphere.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR PROCESS SECTION -->
+    <section id="process" class="py-20 bg-cream text-charcoal-dark relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="mb-12 reveal">
+                <span class="text-xs uppercase tracking-[0.25em] text-terracotta font-semibold block mb-2">OUR PROCESS</span>
+                <h2 class="font-serif text-4xl sm:text-6xl text-charcoal-dark">
+                    From vision to <span class="italic text-terracotta font-serif">reality.</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-4 reveal">
+                    <div class="process-step cursor-pointer p-6 rounded-2xl border-l-4 border-terracotta bg-white shadow-md transition-all duration-300 hover:translate-x-1" data-index="0">
+                        <div class="flex items-center space-x-2 text-[10px] text-terracotta font-bold tracking-widest"><span class="font-serif italic text-sm">I</span> <span> WEEK 1-2 </span></div>
+                        <h3 class="font-serif text-2xl text-charcoal-dark mt-1">Discovery</h3>
+                        <p class="text-muted-brown text-xs leading-relaxed mt-2 step-desc">We begin with an immersive consultation — understanding not just your physical space, but your lifestyle and goals.</p>
+                    </div>
+
+                    <div class="process-step cursor-pointer p-6 rounded-2xl border-l-4 border-transparent bg-white/60 hover:bg-white transition-all duration-300 hover:translate-x-1" data-index="1">
+                        <div class="flex items-center space-x-2 text-[10px] text-terracotta/70 font-bold tracking-widest"><span class="font-serif italic text-sm">II</span> <span> WEEK 2-5 </span></div>
+                        <h3 class="font-serif text-2xl text-charcoal-dark mt-1">Concept & Vision</h3>
+                        <p class="text-muted-brown text-xs leading-relaxed mt-2 hidden step-desc">Translating ideas into mood boards, space layouts, and material palettes tailored specifically to you.</p>
+                    </div>
+
+                    <div class="process-step cursor-pointer p-6 rounded-2xl border-l-4 border-transparent bg-white/60 hover:bg-white transition-all duration-300 hover:translate-x-1" data-index="2">
+                        <div class="flex items-center space-x-2 text-[10px] text-terracotta/70 font-bold tracking-widest"><span class="font-serif italic text-sm">III</span> <span> WEEK 6-10 </span></div>
+                        <h3 class="font-serif text-2xl text-charcoal-dark mt-1">Design Development</h3>
+                        <p class="text-muted-brown text-xs leading-relaxed mt-2 hidden step-desc">Full photorealistic 3D renderings, detailed architectural drawings, and exact material selections.</p>
+                    </div>
+
+                    <div class="process-step cursor-pointer p-6 rounded-2xl border-l-4 border-transparent bg-white/60 hover:bg-white transition-all duration-300 hover:translate-x-1" data-index="3">
+                        <div class="flex items-center space-x-2 text-[10px] text-terracotta/70 font-bold tracking-widest"><span class="font-serif italic text-sm">IV</span> <span>WEEK 11-20 </span></div>
+                        <h3 class="font-serif text-2xl text-charcoal-dark mt-1">Execution</h3>
+                        <p class="text-muted-brown text-xs leading-relaxed mt-2 hidden step-desc">On-site project management, direct procurement, and precise craftsmanship execution.</p>
+                    </div>
+
+                    <div class="process-step cursor-pointer p-6 rounded-2xl border-l-4 border-transparent bg-white/60 hover:bg-white transition-all duration-300 hover:translate-x-1" data-index="4">
+                        <div class="flex items-center space-x-2 text-[10px] text-terracotta/70 font-bold tracking-widest"><span class="font-serif italic text-sm">V</span> <span>FINAL DAY </span></div>
+                        <h3 class="font-serif text-2xl text-charcoal-dark mt-1">Reveal</h3>
+                        <p class="text-muted-brown text-xs leading-relaxed mt-2 hidden step-desc">White-glove styling, final art installation, and a memorable handover of your new space.</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 flex justify-center items-center reveal">
+                    <div class="w-full max-w-[440px] aspect-square rounded-3xl overflow-hidden shadow-2xl bg-stone-800 relative border-4 border-white">
+                        <img id="process-image" 
+                             src="7.jpg" 
+                             alt="Process View" 
+                             class="w-full h-full object-cover transition-opacity duration-500">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonials" class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="mb-16 reveal">
+                <span class="text-xs uppercase tracking-[0.25em] text-muted-brown font-semibold block mb-2">THE WORDS</span>
+                <h2 class="font-serif text-4xl sm:text-5xl text-charcoal-dark">
+                    Spaces loved by the people who <span class="italic text-terracotta">live in them.</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/60 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 reveal">
+                    <p class="font-serif text-base text-charcoal-dark italic mb-6">"From concept to completion, the team was creative, professional, and incredibly attentive. The final result exceeded our expectations."</p>
+                    <div class="flex items-center space-x-3">
+                        <img src="riya.jpeg" alt="Riya" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold text-xs text-charcoal-dark">Riya</h4>
+                            <p class="text-[10px] text-muted-brown">Homeowner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/60 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 reveal" style="transition-delay: 150ms;">
+                    <p class="font-serif text-base text-charcoal-dark italic mb-6">"Professional, creative, and a joy to work with. They understood our vision perfectly.White Arch Studio made the entire interior journey effortless"</p>
+                    <div class="flex items-center space-x-3">
+                        <img src="purvaja.jpeg" alt="Rohit" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold text-xs text-charcoal-dark">Purvaja</h4>
+                            <p class="text-[10px] text-muted-brown">Homeowner X</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/60 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 reveal" style="transition-delay: 300ms;">
+                    <p class="font-serif text-base text-charcoal-dark italic mb-6">"The attention to detail and aesthetic sense is unmatched. Highly recommend!"</p>
+                    <div class="flex items-center space-x-3">
+                        <img src="placeholder-person.png" alt="Priya" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold text-xs text-charcoal-dark">Pundalik</h4>
+                            <p class="text-[10px] text-muted-brown">Office Space Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION (GREEN: #4d513b) -->
+    <footer id="contact" class="bg-sage text-white pt-16 pb-8 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            
+            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between pb-16 gap-8 reveal">
+                
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-2.5">
+                        <svg class="w-7 h-7 text-stone-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M4 21V10a8 8 0 1 1 16 0v11" />
+                            <path d="M9 21v-6a3 3 0 0 1 6 0v6" />
+                        </svg>
+                        <span class="font-serif text-2xl font-semibold tracking-wider text-white">WHITE ARCH</span>
+                    </div>
+                    <span class="text-[8px] tracking-[0.25em] text-white/50 uppercase pl-9 -mt-1">SPACES FOR A BETTER YOU</span>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <h3 class="font-serif text-2xl sm:text-3xl text-white font-normal">
+                        Let's design your <span class="italic font-serif">next chapter.</span>
+                    </h3>
+                    <a href="mailto:hello@whitearch.com" class="w-10 h-10 rounded-full bg-cream text-sage flex items-center justify-center hover:bg-terracotta hover:text-white transition-all duration-300 hover:scale-110">
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="flex flex-col space-y-1 text-xs text-white/80">
+                    <a href="#home" class="hover:text-terracotta-soft transition-colors">Home</a>
+                    <a href="#about" class="hover:text-terracotta-soft transition-colors">About</a>
+                    <a href="#services" class="hover:text-terracotta-soft transition-colors">Services</a>
+                    <a href="#projects" class="hover:text-terracotta-soft transition-colors">Projects</a>
+                    <a href="#contact" class="hover:text-terracotta-soft transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <a href="https://www.instagram.com/studiowhitearch?stkn=bWlkdm9qc3RvNzE1" target="_blank" class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors">
+                        <i class="fa-brands fa-instagram text-xs"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors">
+                        <i class="fa-brands fa-pinterest text-xs"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors">
+                        <i class="fa-brands fa-linkedin-in text-xs"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-[10px] text-white/50 space-y-2 sm:space-y-0">
+                <p>&copy; 2026 White Arch. All rights reserved.</p>
+                <p>Designed with <span class="text-terracotta-soft">♡</span> for better spaces</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Mobile Navigation Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll Observer for General Reveal Animations
+        const observerOptions = {
+            root: null,
+            threshold: 0.12,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Reversible Door Observer
+        const serviceCards = document.querySelectorAll('.service-card');
+        const serviceDoorObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const card = entry.target;
+                const cardIndex = parseInt(card.getAttribute('data-index') || '0');
+                
+                if (entry.isIntersecting) {
+                    const totalDelay = 1000 + (cardIndex * 600);
+                    card.doorTimeout = setTimeout(() => {
+                        card.classList.add('doors-open');
+                    }, totalDelay);
+                } else {
+                    if (card.doorTimeout) clearTimeout(card.doorTimeout);
+                    card.classList.remove('doors-open');
+                }
+            });
+        }, {
+            threshold: 0.25,
+            rootMargin: '0px 0px -20px 0px'
+        });
+
+        serviceCards.forEach(card => serviceDoorObserver.observe(card));
+
+        // Process Interactive Switcher
+        const processImages = [
+            "7.jpg",
+            "6.jpg",
+            "4.jpg", 
+            "5.jpg",
+            "8.jpg"
+        ];
+
+        const steps = document.querySelectorAll('.process-step');
+        const imgElement = document.getElementById('process-image');
+
+        steps.forEach((step, index) => {
+            step.addEventListener('click', () => {
+                steps.forEach(s => {
+                    s.classList.remove('border-terracotta', 'bg-white', 'shadow-md');
+                    s.classList.add('border-transparent', 'bg-white/60');
+                    const desc = s.querySelector('.step-desc');
+                    if (desc) desc.classList.add('hidden');
+                });
+
+                step.classList.add('border-terracotta', 'bg-white', 'shadow-md');
+                step.classList.remove('border-transparent', 'bg-white/60');
+                
+                const desc = step.querySelector('.step-desc');
+                if (desc) desc.classList.remove('hidden');
+
+                imgElement.style.opacity = '0';
+                setTimeout(() => {
+                    imgElement.src = processImages[index];
+                    imgElement.style.opacity = '1';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+/* Base Utility & Color Fallbacks */
+.bg-cream { background-color: #F6F2EE; }
+.bg-terracotta { background-color: #b6653e; }
+.bg-terracotta-hover:hover { background-color: #98512e; }
+.bg-terracotta-soft { background-color: #c47853; }
+.bg-sage { background-color: #4d513b; }
+.bg-sage-light { background-color: #61664c; }
+
+.text-terracotta { color: #b6653e; }
+.text-terracotta-soft { color: #c47853; }
+.text-sage { color: #4d513b; }
+.text-charcoal-dark { color: #221E1D; }
+.text-muted-brown { color: #726863; }
+
+/* Responsive Arch Curve */
+.arch-top {
+    border-radius: 120px 120px 0 0;
+}
+
+@media (min-width: 640px) {
+    .arch-top {
+        border-radius: 240px 240px 0 0;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #F6F2EE;
+}
+::-webkit-scrollbar-thumb {
+    background: #b6653e;
+    border-radius: 4px;
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 3D Door Mechanics for Service Cards */
+.perspective-1000 {
+    perspective: 1200px;
+}
+
+/* Rectangular Door Shape Classes */
+.door-card-shape {
+    border-radius: 16px;
+}
+.door-left-shape {
+    border-radius: 14px 0 0 14px;
+}
+.door-right-shape {
+    border-radius: 0 14px 14px 0;
+}
+
+/* Animation Speed for Doors */
+.door-left {
+    transform-origin: left center;
+    transition: transform 3.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 2.5s ease-in-out;
+    backface-visibility: hidden;
+}
+.door-right {
+    transform-origin: right center;
+    transition: transform 3.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 2.5s ease-in-out;
+    backface-visibility: hidden;
+}
+
+/* Open Doors State */
+.doors-open .door-left {
+    transform: rotateY(-118deg);
+    opacity: 0;
+    pointer-events: none;
+}
+.doors-open .door-right {
+    transform: rotateY(118deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Smooth Floating Animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+.animate-float {
+    animation: float 5s ease-in-out infinite;
+}
+
+/* PERFECT SEAMLESS INFINITE MARQUEE WITH ZERO LAG */
+:root {
+    --lamp-spacing: 5rem;
+}
+@media (min-width: 640px) {
+    :root {
+        --lamp-spacing: 8rem;
+    }
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.lamp-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 18s linear infinite;
+    will-change: transform;
+}
+
+.lamp-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: var(--lamp-spacing);
+    padding-right: var(--lamp-spacing);
+}
+
+/* Organic Shapes */
+.organic-shape-1 { border-radius: 68% 32% 54% 46% / 52% 58% 42% 48%; }
+.organic-shape-2 { border-radius: 42% 58% 38% 62% / 62% 38% 62% 38%; }
+.organic-shape-3 { border-radius: 56% 44% 65% 35% / 44% 60% 40% 56%; }
+.organic-shape-4 { border-radius: 38% 62% 46% 54% / 58% 42% 58% 42%; }
+
+/* Extra */
+#hero-slider{
+    padding-bottom: 1rem !important;
+}

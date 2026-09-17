@@ -1,0 +1,226 @@
+/* Color Palette Variables */
+:root {
+    --cream: #F9F6F0;
+    --cream-light: rgba(249, 246, 240, 0.85);
+    --charcoal: #222222;
+    --terracotta: #B6653E;
+    --terracotta-soft: #d88b65;
+    --muted-brown: #786C66;
+    --sage: #3B483C;
+    --stone-border: rgba(214, 208, 201, 0.6);
+    --stone-bg: #e8e4de;
+}
+
+/* Base Styles */
+body {
+    background-color: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+::selection {
+    background-color: var(--terracotta);
+    color: #ffffff;
+}
+
+.font-serif {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.font-sans {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.bg-cream {
+    background-color: var(--cream);
+}
+
+.bg-cream-blur {
+    background-color: rgba(249, 246, 240, 0.9);
+    backdrop-filter: blur(10px);
+}
+
+.bg-sage {
+    background-color: var(--sage);
+}
+
+.bg-stone {
+    background-color: var(--stone-bg);
+}
+
+.text-charcoal {
+    color: var(--charcoal);
+}
+
+.text-terracotta {
+    color: var(--terracotta);
+}
+
+.text-muted-brown {
+    color: var(--muted-brown);
+}
+
+.text-cream-light {
+    color: var(--cream-light);
+}
+
+.text-stone-400 {
+    color: #a8a29e;
+}
+
+.border-stone {
+    border-color: var(--stone-border) !important;
+}
+
+/* Text & Typography Helpers */
+.text-hover-terracotta {
+    transition: color 0.3s ease;
+}
+.text-hover-terracotta:hover {
+    color: var(--terracotta) !important;
+}
+
+.text-xs {
+    font-size: 0.75rem;
+}
+
+.text-xxs {
+    font-size: 0.625rem;
+}
+
+.text-micro {
+    font-size: 0.625rem;
+}
+
+.meta-label {
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
+}
+
+.tracking-wide {
+    letter-spacing: 0.05em;
+}
+
+.tracking-widest {
+    letter-spacing: 0.2em;
+}
+
+.sub-logo-text {
+    font-size: 0.5rem;
+    letter-spacing: 0.25em;
+    margin-top: -2px;
+}
+
+/* Layout Utilities */
+.max-w-4xl {
+    max-width: 56rem;
+}
+
+.max-w-2xl {
+    max-width: 42rem;
+}
+
+.max-w-5xl {
+    max-width: 64rem;
+}
+
+.max-h-85 {
+    max-height: 85vh;
+}
+
+.h-420 {
+    height: 420px;
+}
+
+.h-450 {
+    height: 450px;
+}
+
+.h-480 {
+    height: 480px;
+}
+
+.h-600 {
+    height: 600px;
+}
+
+.arch-top {
+    border-radius: 1rem;
+}
+
+/* Brand Logo Animations */
+.logo-group:hover .brand-arch {
+    transform: rotate(12deg);
+}
+
+.brand-arch {
+    transition: transform 0.3s ease;
+}
+
+.arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+.text-hover-terracotta:hover .arrow-icon {
+    transform: translateX(-4px);
+}
+
+/* Gallery Hover Styles */
+.gallery-item {
+    cursor: pointer;
+}
+
+.gallery-img {
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.05);
+}
+
+/* Scroll Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Lightbox Modal */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.lightbox-close-btn:hover {
+    color: var(--terracotta-soft);
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | White Arch Studio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F8F5F0',
+                        terracotta: {
+                            DEFAULT: '#C46851',
+                            hover: '#B05842',
+                        },
+                        sage: '#4d513b',
+                        'dark-sage': '#484E3F',
+                        'charcoal-dark': '#24211E',
+                        'muted-brown': '#7A7067',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="home.css">
+</head>
+<body class="bg-cream text-charcoal-dark font-sans antialiased selection:bg-terracotta selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-stone-200/50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="home.html" class="flex flex-col group">
+                <div class="flex items-center space-x-2.5">
+                    <svg class="w-6 h-6 text-terracotta group-hover:rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M4 21V10a8 8 0 1 1 16 0v11" />
+                        <path d="M9 21v-6a3 3 0 0 1 6 0v6" />
+                    </svg>
+                    <span class="font-serif text-2xl font-semibold tracking-wider text-charcoal-dark">WHITE ARCH</span>
+                </div>
+                <span class="text-[8px] tracking-[0.25em] text-muted-brown uppercase pl-8 -mt-1 font-medium">SPACES FOR A BETTER YOU</span>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-medium tracking-wide text-charcoal-dark/80">
+                <a href="home.html#home" class="hover:text-terracotta transition-colors">Home</a>
+                <a href="home.html#about" class="hover:text-terracotta transition-colors">About</a>
+                <a href="home.html#services" class="hover:text-terracotta transition-colors">Services</a>
+                <a href="home.html#projects" class="hover:text-terracotta transition-colors">Projects</a>
+                <a href="home.html#process" class="hover:text-terracotta transition-colors">Process</a>
+                <a href="home.html#testimonials" class="hover:text-terracotta transition-colors">Testimonials</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:block">
+                <a href="contact.html" class="inline-block bg-terracotta hover:bg-terracotta-hover text-white text-xs font-medium px-6 py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                    Get in Touch
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button id="mobile-menu-btn" class="md:hidden text-charcoal-dark p-2" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTACT SECTION -->
+    <section class="py-16 sm:py-24 max-w-7xl mx-auto px-6 lg:px-12">
+        
+        <!-- Header Title -->
+        <div class="max-w-3xl mb-16">
+            <span class="text-xs uppercase tracking-[0.25em] text-terracotta font-semibold block mb-2">LET'S CONNECT</span>
+            <h1 class="font-serif text-4xl sm:text-6xl text-charcoal-dark leading-tight">
+                Start your space transformation <span class="italic text-terracotta font-serif">today.</span>
+            </h1>
+            <p class="text-muted-brown text-sm sm:text-base mt-4 max-w-xl">
+                Have a project in mind or want to explore ideas? Reach out through any of our channels or send us a message below.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            
+            <!-- LEFT COLUMN: Quick Channel Cards -->
+            <div class="lg:col-span-5 space-y-4">
+                
+                <h3 class="text-xs uppercase tracking-[0.2em] font-semibold text-muted-brown mb-6">Direct Communication</h3>
+
+                <!-- Call Card -->
+                <a href="tel:+919372031113" class="flex items-center p-5 bg-white rounded-2xl border border-stone-200/70 shadow-sm hover:shadow-md hover:border-terracotta/40 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-full bg-cream flex items-center justify-center text-terracotta group-hover:bg-terracotta group-hover:text-white transition-colors duration-300 shrink-0 mr-4">
+                        <i class="fa-solid fa-phone text-base"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider text-muted-brown block font-semibold">Call Us</span>
+                        <span class="text-sm font-medium text-charcoal-dark group-hover:text-terracotta transition-colors">+91 9372031113</span>
+                    </div>
+                </a>
+
+                <!-- WhatsApp Card -->
+                <a href="https://wa.me/919372031113?text=Hello%20White%20Arch%20Studio,%20I'd%20like%20to%20inquire%20about%20a%20project." target="_blank" class="flex items-center p-5 bg-white rounded-2xl border border-stone-200/70 shadow-sm hover:shadow-md hover:border-emerald-500/40 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shrink-0 mr-4">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider text-muted-brown block font-semibold">WhatsApp</span>
+                        <span class="text-sm font-medium text-charcoal-dark group-hover:text-emerald-600 transition-colors">Chat directly on WhatsApp</span>
+                    </div>
+                </a>
+
+                <!-- Email Card -->
+                <a href="mailto:studiowhitearch@gmail.com" class="flex items-center p-5 bg-white rounded-2xl border border-stone-200/70 shadow-sm hover:shadow-md hover:border-terracotta/40 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-full bg-cream flex items-center justify-center text-terracotta group-hover:bg-terracotta group-hover:text-white transition-colors duration-300 shrink-0 mr-4">
+                        <i class="fa-regular fa-envelope text-base"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider text-muted-brown block font-semibold">Email Us</span>
+                        <span class="text-sm font-medium text-charcoal-dark group-hover:text-terracotta transition-colors break-all">studiowhitearch@gmail.com</span>
+                    </div>
+                </a>
+
+                <!-- Instagram Card -->
+                <a href="https://www.instagram.com/studiowhitearch?stkn=bWlkdm9qc3RvNzE1" target="_blank" class="flex items-center p-5 bg-white rounded-2xl border border-stone-200/70 shadow-sm hover:shadow-md hover:border-rose-400/40 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center text-rose-500 group-hover:bg-rose-500 group-hover:text-white transition-colors duration-300 shrink-0 mr-4">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider text-muted-brown block font-semibold">Instagram</span>
+                        <span class="text-sm font-medium text-charcoal-dark group-hover:text-rose-500 transition-colors">@studiowhitearch</span>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Contact Form -->
+            <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-stone-200/80 shadow-xl">
+                <h3 class="font-serif text-2xl text-charcoal-dark mb-2">Send us a Message</h3>
+                <p class="text-xs text-muted-brown mb-8">Fill out the details below and we will get back to you within 24 hours.</p>
+
+                <form action="https://formsubmit.co/studiowhitearch@gmail.com" method="POST" class="space-y-6">
+                    
+                    <input type="hidden" name="_subject" value="New Inquiry - White Arch Website">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-xs uppercase tracking-wider font-semibold text-charcoal-dark mb-2">Your Name *</label>
+                            <input type="text" id="name" name="Name" required placeholder="Jane Doe" 
+                                class="w-full bg-cream/50 border border-stone-200 rounded-xl px-4 py-3 text-xs text-charcoal-dark focus:outline-none focus:border-terracotta focus:bg-white transition-colors">
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-xs uppercase tracking-wider font-semibold text-charcoal-dark mb-2">Phone Number *</label>
+                            <input type="tel" id="phone" name="Phone" required placeholder="+91 98765 43210" 
+                                class="w-full bg-cream/50 border border-stone-200 rounded-xl px-4 py-3 text-xs text-charcoal-dark focus:outline-none focus:border-terracotta focus:bg-white transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-xs uppercase tracking-wider font-semibold text-charcoal-dark mb-2">Email Address *</label>
+                        <input type="email" id="email" name="Email" required placeholder="jane@example.com" 
+                            class="w-full bg-cream/50 border border-stone-200 rounded-xl px-4 py-3 text-xs text-charcoal-dark focus:outline-none focus:border-terracotta focus:bg-white transition-colors">
+                    </div>
+
+                    <div>
+                        <label for="project" class="block text-xs uppercase tracking-wider font-semibold text-charcoal-dark mb-2">Project Type</label>
+                        <select id="project" name="Project Type" 
+                            class="w-full bg-cream/50 border border-stone-200 rounded-xl px-4 py-3 text-xs text-charcoal-dark focus:outline-none focus:border-terracotta focus:bg-white transition-colors">
+                            <option value="Residential Design">Residential Design</option>
+                            <option value="Commercial Space">Commercial / Office Space</option>
+                            <option value="Space Planning">Space Planning</option>
+                            <option value="Styling & Decor">Styling & Consultation</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-xs uppercase tracking-wider font-semibold text-charcoal-dark mb-2">Message *</label>
+                        <textarea id="message" name="Message" rows="4" required placeholder="Tell us about your space, timeline, or vision..." 
+                            class="w-full bg-cream/50 border border-stone-200 rounded-xl px-4 py-3 text-xs text-charcoal-dark focus:outline-none focus:border-terracotta focus:bg-white transition-colors resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" 
+                        class="w-full bg-terracotta hover:bg-terracotta-hover text-white text-xs font-semibold uppercase tracking-widest py-4 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                        Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer id="contact" class="bg-sage text-white pt-16 pb-8 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            
+            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between pb-16 gap-8">
+                
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-2.5">
+                        <svg class="w-7 h-7 text-stone-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M4 21V10a8 8 0 1 1 16 0v11" />
+                            <path d="M9 21v-6a3 3 0 0 1 6 0v6" />
+                        </svg>
+                        <span class="font-serif text-2xl font-semibold tracking-wider text-white">WHITE ARCH</span>
+                    </div>
+                    <span class="text-[8px] tracking-[0.25em] text-white/50 uppercase pl-9 -mt-1">SPACES FOR A BETTER YOU</span>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <h3 class="font-serif text-2xl sm:text-3xl text-white font-normal">
+                        Let's design your <span class="italic font-serif">next chapter.</span>
+                    </h3>
+                    <a href="mailto:studiowhitearch@gmail.com" class="w-10 h-10 rounded-full bg-cream text-sage flex items-center justify-center hover:bg-terracotta hover:text-white transition-all duration-300 hover:scale-110">
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="flex flex-col space-y-1 text-xs text-white/80">
+                    <a href="home.html#home" class="hover:text-terracotta-soft transition-colors">Home</a>
+                    <a href="home.html#about" class="hover:text-terracotta-soft transition-colors">About</a>
+                    <a href="home.html#services" class="hover:text-terracotta-soft transition-colors">Services</a>
+                    <a href="home.html#projects" class="hover:text-terracotta-soft transition-colors">Projects</a>
+                    <a href="contact.html" class="hover:text-terracotta-soft transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <a href="https://www.instagram.com/studiowhitearch?stkn=bWlkdm9qc3RvNzE1" target="_blank" class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors">
+                        <i class="fa-brands fa-instagram text-xs"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors">
+                        <i class="fa-brands fa-pinterest text-xs"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors">
+                        <i class="fa-brands fa-linkedin-in text-xs"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-[10px] text-white/50 space-y-2 sm:space-y-0">
+                <p>&copy; 2025 White Arch. All rights reserved.</p>
+                <p>Designed with <span class="text-terracotta-soft">♡</span> for better spaces</p>
+            </div>
+
+        </div>
+    </footer>
+</body>
+</html>
