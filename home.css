@@ -139,3 +139,48 @@
 #hero-slider{
     padding-bottom: 1rem !important;
 }
+/* 3D Design Studio controls */
+.studio-chip {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.55rem 1.25rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(34, 30, 29, 0.15);
+    color: #221E1D;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+.studio-chip:hover { border-color: #b6653e; }
+.studio-chip.is-active {
+    background: #b6653e;
+    border-color: #b6653e;
+    color: #fff;
+}
+.studio-palette {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-align: center;
+    line-height: 1.35;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #726863;
+    transition: color 0.3s ease;
+}
+.studio-palette:hover,
+.studio-palette.is-active { color: #221E1D; }
+.studio-swatch {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px 9999px 0.4rem 0.4rem;
+    border: 2px solid #fff;
+    background: linear-gradient(135deg, var(--wall) 0 55%, var(--accent) 55% 100%);
+    box-shadow: 0 0 0 1px rgba(34, 30, 29, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.studio-palette:hover .studio-swatch { transform: translateY(-2px); }
+.studio-palette.is-active .studio-swatch { box-shadow: 0 0 0 2px #b6653e; }

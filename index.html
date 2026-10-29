@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom JS Configuration & Scripts -->
     <script src="home.js" defer></script>
+    <script src="home-3d.js" defer></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -260,6 +261,64 @@
                     <span class="nav-num text-stone-400 hover:text-charcoal-dark font-semibold">03</span>
                     <span class="nav-bar hidden w-8 h-[2px] bg-terracotta rounded-full transition-all duration-300"></span>
                 </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3D DESIGN STUDIO (interactive room diorama, see home-3d.js) -->
+    <section id="studio-3d" class="py-20 bg-cream overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <div class="lg:col-span-5 space-y-6 reveal">
+                <span class="text-xs uppercase tracking-[0.25em] text-terracotta font-semibold block">DESIGN STUDIO</span>
+                <h2 class="font-serif text-4xl sm:text-5xl text-charcoal-dark leading-tight">
+                    Imagine it in <span class="italic text-terracotta">three dimensions.</span>
+                </h2>
+                <p class="text-muted-brown text-sm leading-relaxed max-w-md">
+                    Before a single wall is painted, we build your space in 3D, testing light, proportion and palette until it feels right. Drag the room to look around, then set the mood and try a colour palette.
+                </p>
+
+                <div data-3d-controls class="space-y-5 pt-2">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-[0.25em] text-muted-brown font-semibold block mb-2">Mood</span>
+                        <div class="flex space-x-2">
+                            <button data-mood="day" class="studio-chip is-active"><i class="fa-regular fa-sun mr-2"></i>Day</button>
+                            <button data-mood="evening" class="studio-chip"><i class="fa-regular fa-moon mr-2"></i>Evening</button>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-[0.25em] text-muted-brown font-semibold block mb-2">Colour palette</span>
+                        <!-- data-palette = "wall colour,accent colour" -->
+                        <div class="grid grid-cols-5 gap-2 max-w-sm">
+                            <button data-palette="#a4ab8a,#c3592b" class="studio-palette is-active" aria-label="Rustic and sage palette">
+                                <span class="studio-swatch" style="--wall:#a4ab8a;--accent:#c3592b"></span>Rustic &amp; Sage
+                            </button>
+                            <button data-palette="#e4d4bd,#7a4f33" class="studio-palette" aria-label="Brown and beige palette">
+                                <span class="studio-swatch" style="--wall:#e4d4bd;--accent:#7a4f33"></span>Brown &amp; Beige
+                            </button>
+                            <button data-palette="#e8d9c3,#7a2333" class="studio-palette" aria-label="Maroon and beige palette">
+                                <span class="studio-swatch" style="--wall:#e8d9c3;--accent:#7a2333"></span>Maroon &amp; Beige
+                            </button>
+                            <button data-palette="#e3b23c,#2e3a5c" class="studio-palette" aria-label="Navy and yellow palette">
+                                <span class="studio-swatch" style="--wall:#e3b23c;--accent:#2e3a5c"></span>Navy &amp; Yellow
+                            </button>
+                            <button data-palette="#f3eee6,#c2577a" class="studio-palette" aria-label="Pink and off-white palette">
+                                <span class="studio-swatch" style="--wall:#f3eee6;--accent:#c2577a"></span>Pink &amp; Off-white
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 reveal">
+                <div class="relative w-full max-w-[620px] mx-auto aspect-[5/4] rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-[#F6F2EE] transition-colors duration-700">
+                    <canvas id="studio-canvas" class="absolute inset-0 w-full h-full block cursor-grab active:cursor-grabbing touch-pan-y" aria-label="Interactive 3D living room model"></canvas>
+                    <img data-3d-fallback src="16.jpg" alt="White Arch living space" class="hidden absolute inset-0 w-full h-full object-cover">
+                    <span class="studio-hint pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2 bg-white/80 backdrop-blur-md text-[10px] tracking-[0.2em] uppercase text-charcoal-dark px-4 py-1.5 rounded-full transition-opacity duration-500">
+                        <i class="fa-solid fa-arrows-left-right mr-2 text-terracotta"></i>Drag to explore
+                    </span>
+                </div>
             </div>
 
         </div>
