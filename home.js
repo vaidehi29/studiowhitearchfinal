@@ -52,13 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reversible Door Observer
     const serviceCards = document.querySelectorAll('.service-card');
+    // On phones the cards stack one per row, so each door opens as soon as it scrolls into view
+    const singleColumn = window.matchMedia('(max-width: 639px)');
     const serviceDoorObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const card = entry.target;
             const cardIndex = parseInt(card.getAttribute('data-index') || '0');
-            
+
             if (entry.isIntersecting) {
-                const totalDelay = 1000 + (cardIndex * 600);
+                const totalDelay = singleColumn.matches ? 0 : 1000 + (cardIndex * 600);
                 card.doorTimeout = setTimeout(() => {
                     card.classList.add('doors-open');
                 }, totalDelay);
